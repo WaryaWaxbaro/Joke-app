@@ -3,9 +3,9 @@
 # dependencies
 node_modules
 /node_modules
-client/node_modules
-client/Keys.js
-/Keys
+/frontend/node_modules
+/frontend/src/Keys.js
+Keys.js
 /.pnp
 .pnp.js
 
