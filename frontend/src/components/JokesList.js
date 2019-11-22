@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {Title} from './Title';
+import { Title } from "./Title";
 import AddJoke from "./AddJoke";
 import Jokes from "./Jokes";
 import axios from "axios";
 import { useToggleState } from "../hooks/useToggleState";
+import Loader from "./Loader";
 
 const jokesArray = [
   {
@@ -30,10 +31,21 @@ const jokesArray = [
 ];
 
 function JokesList() {
-  const [data, setData] = useState(jokesArray);
+  const [data, setData] = useState([]);
   const [state, toggle] = useToggleState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    const getJokes = async () => {
+      const response = await axios("/jokes/api");
+      const jokesData = await response.data;
+      setIsLoading(false);
+      setData(() => {
+        return jokesData;
+      });
+    };
+
+    getJokes();
   }, [state]);
 
   const addUpdateDeleteData = async (method, url, data) => {
@@ -46,39 +58,33 @@ function JokesList() {
   };
 
   const addJoke = newJoke => {
-    //addUpdateDeleteData('post', URL, newJoke);
-    let newData = [...data, newJoke];
-    setData(newData);
+    addUpdateDeleteData('post', '/jokes/api', newJoke);
   };
 
   const updateJoke = (id, newJoke) => {
-    const currentJoke = data.map(joke => {
-      if (joke._id === id) {
-        return { ...joke, joke: newJoke };
-      }
-      return joke;
-    });
-    console.log(currentJoke);
-    setData(currentJoke);
+    addUpdateDeleteData('put', `/jokes/api/${id}`, {joke: newJoke});
   };
 
   const deleteJoke = id => {
-    const currentJoke = data.filter(joke => joke._id !== id);
-    setData(currentJoke);
+    addUpdateDeleteData('delete', `/jokes/api/${id}`, {});
   };
   return (
-    <section>
+    <section className="JokeList">
       <Title title="submit a joke" />
       <AddJoke add={addJoke} />
       <Title title="jokes list" />
-      <Jokes
-        data={data}
-        updateJoke={updateJoke}
-        toggle={toggle}
-        deleteJoke={deleteJoke}
-      />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <Jokes
+          data={data}
+          updateJoke={updateJoke}
+          toggle={toggle}
+          deleteJoke={deleteJoke}
+        />
+      )}
     </section>
-  )
+  );
 }
 
 export default JokesList;

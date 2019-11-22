@@ -8,7 +8,7 @@ const jokeSchema = new mongoose.Schema({
     type: String,
     required: 'Name cannot be blank'
   },
-  created_data: {
+  created_date: {
     type: Date,
     default: Date.now
   }

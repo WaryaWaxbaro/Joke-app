@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import EditJoke from "./EditJoke";
 import Joke from "./Joke";
 
 function Jokes({ data, updateJoke, deleteJoke }) {

@@ -50,11 +50,11 @@ function Forecast() {
     <section className="Weather">
       <Title title="Today's Weather Forecast" />
       <ForecastSearch getName={getCityName} />
-{/*       {loading ? (
+      {loading ? (
         <Loader />
       ) : (
         <ForecastResult weather={weather} cityName={cityName} />
-      )} */}
+      )}
     </section>
   );
 }
