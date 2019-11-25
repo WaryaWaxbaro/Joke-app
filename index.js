@@ -11,10 +11,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/jokes/api/', jokeRoutes);
 
-app.get('/', (req, res) => {
-  res.send('HELLO FROM EXPRESS');
-});
-
 //Serve static assets if in production
 if(process.env.NODE_ENV === 'production'){
   //Set static folder
