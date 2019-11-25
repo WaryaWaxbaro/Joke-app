@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Joke from "./Joke";
 
 function Jokes({ data, updateJoke, deleteJoke }) {

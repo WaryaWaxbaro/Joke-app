@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Title } from "./Title";
 import ForecastSearch from "./ForecastSearch";
 import ForecastResult from "./ForecastResult";
-import { key, locationBase, cityBase } from "../Keys";
+import { key, locationBase, cityBase } from "../keys";
 import Loader from './Loader';
 import axios from "axios";
 
