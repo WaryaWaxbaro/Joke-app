@@ -28,7 +28,7 @@ function Forecast() {
       const cityResponse = await axios(cityUrl);
       const cityKey = await cityResponse.data[0].Key;
       //Log the city key
-      console.log(cityKey);
+      //console.log(cityKey);
 
       //After getting the city key, another request is made for
       //the current weather details of that city
@@ -40,7 +40,6 @@ function Forecast() {
         return currentForecast;
       });
       setLoading(false);
-      console.log("Weather from Forecast", currentForecast);
     };
 
     getWeather(cityName);

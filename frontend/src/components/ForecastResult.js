@@ -2,7 +2,6 @@ import React from "react";
 import { images } from "../helper/Icons";
 
 function ForecastResult({ weather, cityName }) {
-  console.log("Weather from Result", weather);
   const { WeatherIcon, Temperature } = weather;
   const { Imperial, Metric } = Temperature;
 

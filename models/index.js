@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 //const db = require('../config/key').mongoURI;
 const db = process.env.DATABASE_URL;
 mongoose.set('debug', true);
